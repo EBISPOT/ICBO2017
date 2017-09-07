@@ -1,0 +1,29 @@
+# IntelliJ project files
+*.iml
+*.ipr
+*.iws
+
+# Eclipse project files
+.project
+.classpath
+.settings
+.pydevproject
+bin/
+
+# Maven files
+dependency-reduced-pom.xml
+
+.DS_Store
+
+# Ignore Solr data and library directories
+solr-conf/documents/data
+solr-conf/documents/lib
+
+# Any local files
+*_local.*
+
+# idea files
+.idea*
+
+# log files
+tools/logs
