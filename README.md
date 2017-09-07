@@ -1,6 +1,6 @@
 # SPOT Ontology Tooling Tutorial
 
-This is a short interactive introduction to the SPOT Ontology Toolkit. the BioSolr Ontology Expansion plugin for Solr.
+This is a short interactive introduction to the SPOT Ontology Toolkit.
 
 In this tutorial you will learn how to:
  
