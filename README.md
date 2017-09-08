@@ -141,14 +141,13 @@ Go to the data file and open the traits.tsv file (you can use your favorite edit
 
 We have created a list of all the disease traits for our studies. The disease traits are what we will be annotating to EFO. In this case we only have 22 traits to annotate.
 
-One option we have is to manually search for each term in OLS, find the EFO ontology class that we find fit, and keep it as our annotation. But you usually will have a lot more data and need a process that is a bit more automated.
+One option we have is to manually search for each trait in OLS, find the EFO ontology class that we find fit, and keep it as our annotation. But you usually will have a lot more data and need a process that is a bit more automated.
 
 Go to the Zooma web page: www.ebi.ac.uk/spot/zooma
 
 Copy the traits from the traits.tsv file into the text box and press the 'Annotate button'. Take a look at the results. 
 
-A lot of teams at the EBI annotate their data with ontology terms. Because they don't want to do this all the time, they create data sources to store the mappings between their text data and ontology term. So next time they want to annotate the same terms, they don't need to look them up again. That's what Zooma does. It has a bunch of curated data sources from various teams at the EBI. When a text term is given to Zooma, Zooma will look to see if it has seen a suitable mapping for that term before before and will return the
-mapping with a level of confidence. If Zooma hasn't seen the term before in it's data sources, it will go to OLS and try to find a good mapping there.
+Zooma tries to annotate the data using curated mappings that have been given to it by other teams at the EBI. If it can't find a suitable mapping, it will go to OLS and search there. It also returns a confidence level for the annotation mapping it has found. 
 
 You can see the data sources that Zooma has, and customize your search as you want it. Click on 'Configure Datasources' and have a look around.
 
@@ -158,26 +157,27 @@ We will try and follow the curation steps for these studies to fit the GWAS Cata
 
 ## Part Six - Zooma HIGH confidence
 
-Select all the data sources, except GWAS, and run the annotation again. The results should not be as good this time. That's OK, we will make them better!
+Select all the data sources, except GWAS, from the 'Configure Datasources' drop down window and run the annotation again. The results should not be as good this time. That's OK, we will make them better!
 
-First let's look at the results that have a HIGH confidence. If you the sources that you have selected represent the domain of your data, you can use the mappings that have a high confidence withought looking at them again. 
+First let's look at the results that have a HIGH confidence. If the sources that you have selected represent the domain of your data, you can use the mappings that have a high confidence withought looking at them again. 
 
-We will copy these mappings to our traits.tsv file. Open traits-1.tsv in excel. We have already copied the high mappings into this file. Select the traits that don't have a mapping and lets go run them through Zooma again.
+Open `traits-1.tsv` in excel. We have already copied the high mappings into this file. Select the traits that don't have a mapping and lets go run them through Zooma again.
 
 ## Part Seven - Zooma GOOD confidence
 
-For the results that didn't get a high mapping, let's run the same query (selecting all data sources, except GWAS). We can see that we have some resutls from some other data sources, that don't match very well, and some ontology matches. Zooma went and looked up our terms in OLS. Filter out the data sources in total (select 'Don't search in any datasources' in the 'Configure datasources' drop down window) and hit 'Annotate' again. The results look a little better for some terms.
+For the results that didn't get a high mapping, let's run the same query (selecting all data sources, except GWAS). We can see that we have some resutls from some other data sources, that don't match very well, and some ontology matches. Zooma went and looked up our traits in OLS. Filter out the data sources in total (select 'Don't search in any datasources' in the 'Configure datasources' drop down window) and hit 'Annotate' again. The results look a little better for some traits.
 
 We will focus on the mappings that have a good confidence and see if we like them and how we can improve them. We have done a bit of pre-processing to help you curate the good terms and ignore the medium mappings for now. 
-Open the traits-2.tsv file in excel and filter the GOOD results. Select them and paste them into the Zooma box. Run the annotation (remember, we have chosen to exclude all data sources and let Zooma fall back to searching OLS for now). 
 
-All the mappings should be of GOOD confidence. This means that Zooma found an exact label (or synonym) match for our terms in OLS. 
+Open the `traits-2.tsv` file in excel and filter the GOOD results. Select them and paste them into the Zooma box. Run the annotation (remember, we have chosen to exclude all data sources and let Zooma fall back to searching OLS for now). 
 
-We want to map our terms to EFO. Some already mapped to EFO and that's great! We still need to look at them though to make sure that we are satisfied with the mapping, or that we don't need to alter our search to include more terms. 
+All the mappings should be of GOOD confidence. This means that Zooma found an exact label (or synonym) match for our traits in OLS. 
 
-For example `Age at smoking initiation in chronic obstructive pulmonary disease` mapped to `EFO_0000341` with label `chronic obstructive pulmonary disease`. We want to keep that mapping, but there is room for another one to be included. If we go to (OLS)[www.ebi.ac.uk/ols] and search for `smoking initiation` we get the EFO term `EFO_0005670`. So in this case we can have 2 mappings. 
+We want to map our traits to EFO. Some already mapped to EFO and that's great! We still need to look at them though to make sure that we are satisfied with the mapping, or that we don't need to alter our search to include more traits. 
 
-Do the same for the other terms mapped to EFO. 
+For example `Age at smoking initiation in chronic obstructive pulmonary disease` mapped to `EFO_0000341` with label `chronic obstructive pulmonary disease`. We want to keep that mapping, but there is room for another one to be included. If we go to (OLS)[www.ebi.ac.uk/ols] and search for `smoking initiation` we get the EFO term `EFO_0005670`. So in this case we can have 2 mappings. We can add a row in our `traits-2.tsv` file to reflect the extra annotation.
+
+Do the same for the other traits mapped to EFO. 
 
 
 ## Part Eight - Introducing OxO 
@@ -194,14 +194,14 @@ You can do the same for the rest of the OxO Xref mappings, if there are any. For
 
 ## Part Nine - Restricting Zooma to an ontology
 
-Term by term, we have curated the GOOD confidence results. Open the trait-2-curated.tsv file to see the terms after they have been curated. 
+Term by term, we have curated the GOOD confidence results. Open the `trait-2-curated.tsv` file to see the terms after they have been curated. 
 
-Again, let's select the un-mapped terms and go to Zooma. Open the trait-3.tsv file and select the ones with GOOD confidence. These are the ones that were left un-mapped after the last step. Copy them again into Zooma and customize the search.
+Again, let's select the un-mapped terms and go to Zooma. Open the `trait-3.tsv` file and select the ones with GOOD confidence. These are the ones that were left un-mapped after the last step. Copy them again into Zooma and customize the search.
 
 We will exclude all data sources from our search, but now we will also go to 'Configure Ontology Sources' and select only EFO!
 
-Almost all of our mappings are GOOD. We will go though the same process as in step seven and curate any terms that might need curation. 
-The result of the curation is in the traits-3-curated.tsv file. Almost done, only one term left!
+Almost all of our mappings are GOOD. We will go though the same process as in step seven and curate any mappings in the `traits-3.tsv` file that might not look right.
+The result of the curation is in the `traits-3-curated.tsv` file. Almost done, only one term left!
 
 ## Part Ten - Creating a new ontology class through Webulous
 
@@ -209,13 +209,13 @@ We can see the one term is left without a mapping to an EFO class: `Pneumoconios
 
 If we search for the term in OLS we will be able to find a suitable match for it. But let's pretend that there isn't one. This will sometimes happen with your data. Sometimes your data isn't represented yet in the ontology you want - or in any ontology! 
 
-We will see how to create a new class in an ontology using (Webulous)[www.ebi.ac.uk/efo/webilous]. 
+We will see how to create a new class in an ontology using Webulous (www.ebi.ac.uk/efo/webulous). 
 
 Webulous is a tool for guided ontology development. You can specify ontology design patterns in Webulous and populate them with data. There is a built in ontology searcher and validator. 
 
 ## Part Eleven - Install BioSolr plugins
 
-We have our data all annotated. Now we're going to try and improve our search results using the structure of the ontology.  To do this, we need to add the BioSolr ontology expansion plugin.
+We have our data all annotated. If you look into the original file with the studies (`gwas-catalog-data-lung.csv`), you will see that we already have the mappings there under the column `efo_uri`. Now we're going to try and improve our search results using the structure of the ontology.  To do this, we need to add the BioSolr ontology expansion plugin.
 
 Before we start, let's shutdown our running Solr server
 
