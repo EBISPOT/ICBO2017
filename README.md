@@ -145,7 +145,7 @@ One option we have is to manually search for each trait in OLS, find the EFO ont
 
 Go to the Zooma web page: www.ebi.ac.uk/spot/zooma
 
-Copy the traits from the traits.tsv file into the text box and press the 'Annotate button'. Take a look at the results. 
+Copy the traits from the traits.tsv file into the text box and press the 'Annotate'. Take a look at the results. 
 
 Zooma tries to annotate the data using curated mappings that have been given to it by other teams at the EBI. If it can't find a suitable mapping, it will go to OLS and search there. It also returns a confidence level for the annotation mapping it has found. 
 
@@ -173,9 +173,9 @@ Open the `traits-2.tsv` file in excel and filter the GOOD results. Select them a
 
 All the mappings should be of GOOD confidence. This means that Zooma found an exact label (or synonym) match for our traits in OLS. 
 
-We want to map our traits to EFO. Some already mapped to EFO and that's great! We still need to look at them though to make sure that we are satisfied with the mapping, or that we don't need to alter our search to include more traits. 
+We want to map our traits to EFO. Some already mapped to EFO and that's great! We still need to look at them though to make sure that we are satisfied with the mapping, or that we don't need to expand our search to include more ontology classes. 
 
-For example `Age at smoking initiation in chronic obstructive pulmonary disease` mapped to `EFO_0000341` with label `chronic obstructive pulmonary disease`. We want to keep that mapping, but there is room for another one to be included. If we go to (OLS)[www.ebi.ac.uk/ols] and search for `smoking initiation` we get the EFO term `EFO_0005670`. So in this case we can have 2 mappings. We can add a row in our `traits-2.tsv` file to reflect the extra annotation.
+For example `Age at smoking initiation in chronic obstructive pulmonary disease` mapped to `EFO_0000341` with label `chronic obstructive pulmonary disease`. We want to keep that mapping, but there is room for another one to be included. If we go to OLS (www.ebi.ac.uk/ols) and search for `smoking initiation` we get the EFO term `EFO_0005670`. So in this case we can have 2 mappings. We can add a row in our `traits-2.tsv` file to reflect the extra annotation.
 
 Do the same for the other traits mapped to EFO. 
 
@@ -184,23 +184,26 @@ Do the same for the other traits mapped to EFO.
 
 But what about the ones that mapped to a different ontology? Well let's throw them into OxO and see what we get!
 
-Head over to (OxO)[www.ebi.ac.uk/spot/oxo]. OxO is a tool that helps you explore ontology-to-ontology cross references (or ontology-to-vocabulary cross references). So if the term `liver` exists in multiple ontologies, we can find all the common references to that term.
+Head over to OxO (www.ebi.ac.uk/spot/oxo). OxO is a tool that helps you explore ontology-to-ontology cross references (or ontology-to-vocabulary cross references). So if the term `liver` exists in multiple ontologies, we can find all the common references to that term.
 
-Copy and paste all the 'Ontology Class ID's of the other-than-efo-mapped-terms into OxO and select 'Find mappings. We can explore the links from each ontlogy class to an EFO ontology class, if it exists. 
+Copy and paste all the 'Ontology Class ID's of the other-than-efo-mapped-traits into OxO and select 'Find mappings. We can explore the links from each ontlogy class to an EFO ontology class, if it exists. 
 
-Let's try clicking on NCIt:C2975 (Cystic Fibrosis). There is a link to EFO! If we select it and then click on 'View in OLS', we will be redirected to the term in OLS. We can see that the specific Xref leads to an obsolete efo class, but efo tells us what to use instead. 
+Let's try clicking on NCIt:C2975 (Cystic Fibrosis). There is a link to EFO! If we select it and then click on 'View in OLS', we will be redirected to the term in OLS. We can see that the specific Xref leads to an obsolete EFO class, but EFO tells us what to use instead. 
 
-You can do the same for the rest of the OxO Xref mappings, if there are any. For the ones that don't match, we will leave them blank.
+You can do the same for the rest of the OxO Xref mappings, if there are any and keep adding, changing the data in our `traits-2.tsv` file. For the ones that don't match, we will leave them blank.
 
 ## Part Nine - Restricting Zooma to an ontology
 
 Term by term, we have curated the GOOD confidence results. Open the `trait-2-curated.tsv` file to see the terms after they have been curated. 
 
-Again, let's select the un-mapped terms and go to Zooma. Open the `trait-3.tsv` file and select the ones with GOOD confidence. These are the ones that were left un-mapped after the last step. Copy them again into Zooma and customize the search.
+Again, let's select the un-mapped terms and go to Zooma. Open the `trait-3.tsv` file and select the ones with GOOD confidence. These are the ones that were left un-mapped after the last step, and we have already run them again through Zooma and copied their mappings to the file. 
 
-We will exclude all data sources from our search, but now we will also go to 'Configure Ontology Sources' and select only EFO!
+Copy them into Zooma and customize the search.
+
+We will exclude all data sources from our search, but now we will also go to 'Configure Ontology Sources' and select only EFO.
 
 Almost all of our mappings are GOOD. We will go though the same process as in step seven and curate any mappings in the `traits-3.tsv` file that might not look right.
+
 The result of the curation is in the `traits-3-curated.tsv` file. Almost done, only one term left!
 
 ## Part Ten - Creating a new ontology class through Webulous
