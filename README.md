@@ -7,12 +7,12 @@ In this tutorial you will learn how to:
  * Install Solr
  * Index some example data
  * Use an example web application to search this data
- * Go through the SPOT ontology tools in order to annotate the example data
+ * Go through the SPOT ontology tools in order to annotate the data with ontology class id's
    * Zooma - a tool for automatic data annotation: www.ebi.ac.uk/spot/zooma
    * OLS - the Ontology Lookup Service: www.ebi.ac.uk/ols
    * OxO - the Ontology Xref Service: www.ebi.ac.uk/spot/oxo
    * Webulous - a tool for guided ontology development: www.ebi.ac.uk/efo/webulous
- * Install BioSolr - ontology expansion plugin for Solr, to exploit the annotated example data
+ * Install BioSolr - ontology expansion plugin for Solr, to exploit the annotated data
  * Configure BioSolr
  * Perform ontology-powered searches
 
@@ -38,7 +38,7 @@ Now we're happy we can run Solr, so let's shut down our Solr server again...
 ```
 >: bin/solr stop
 ```
-...and now get the extra BioSolr stuff.  We'll be using this later in the tutorial
+...and now get the tutorial material
 
 Check out the code for this demo into your preferred directory - we're going to be using `~/Projects/`:
 ```
@@ -120,12 +120,12 @@ But what if we want all lung diseases? We could try searching for `lung disease`
 
 It is now time we try and annotate our data to an ontology. 
 
-Let's go look at our ontology options in the [Ontology Lookup Service (OLS)](www.ebi.ac.uk/ols).
+Let's go look at our ontology options in the Ontology Lookup Service (OLS) (www.ebi.ac.uk/ols).
 
-The GWAS Catalog annotates it's traits to the [Experimental Factor Ontology (EFO)](www.ebi.ac.uk/efo) and that's what we will try to do to. 
--[x] Try and find EFO in OLS. 
--[x] Take a look at it's structure.
--[x] Find the 'Ontology history' tab and take a look at how EFO evolves over time. Active development of an ontology is a good indicator that this ontology is kept up to date. As the domain of biomedicine changes,
+The GWAS Catalog annotates it's traits to the Experimental Factor Ontology (EFO) (www.ebi.ac.uk/efo) and that's what we will try to do to. 
+- [x] Try and find EFO in OLS. 
+- [x] Take a look at it's structure.
+- [x] Find the 'Ontology history' tab and take a look at how EFO evolves over time. Active development of an ontology is a good indicator that this ontology is kept up to date. As the domain of biomedicine changes,
 it is only natural that the ontologies representing that domain should reflect the changes.
 
 Now that we have decided which ontology we will use, let's go an meet Zooma!
