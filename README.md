@@ -7,7 +7,7 @@ In this tutorial you will learn how to:
  * Install Solr
  * Index some example data
  * Use an example web application to search this data
- * Go through the SPOT ontology tools in order to annotate the data with ontology class id's
+ * Go through the SPOT ontology toolkit in order to annotate the data with ontology class id's
    * Zooma - a tool for automatic data annotation: www.ebi.ac.uk/spot/zooma
    * OLS - the Ontology Lookup Service: www.ebi.ac.uk/ols
    * OxO - the Ontology Xref Service: www.ebi.ac.uk/spot/oxo
