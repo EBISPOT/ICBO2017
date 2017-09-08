@@ -105,7 +105,7 @@ Looks like we get 16 results, all containing lung cancer in the title or the ass
 >       Broderick P - Cancer Res.  
 >       *rs8034191* is associated with *Lung cancer*  
 
-But what if we want all lung diseases? We could try searching for `lung disease` - but this only gives us 2 results, probably not what we want.  We can try just searching for `lung`, which looks a little better - 24 results this time, some of them are lung cancer but there's also stuff about lung function, so this isn't ideal either.
+But what if we want all lung diseases? We could try searching for `lung disease` - but this only gives us 2 results, probably not what we want.  We can try just searching for `lung`, which looks a little better - 25 results this time, some of them are lung cancer but there's also stuff about lung function, so this isn't ideal either.
 
 
 #### Additional Tasks
@@ -118,15 +118,17 @@ But what if we want all lung diseases? We could try searching for `lung disease`
 
 ## Part Four - Selecting our ontology(s)
 
-Now we are going to try and annotate our data to an ontology. 
+It is now time we try and annotate our data to an ontology. 
 
 Let's go look at our ontology options in the [Ontology Lookup Service (OLS)](www.ebi.ac.uk/ols).
 
-The GWAS Catalog annotates it's traits to the [Experimental Factor Ontology (EFO)](www.ebi.ac.uk/efo) and that's what we will try to do to. Try and find EFO in OLS. Take a look at it's structure.
-Find the 'Ontology history' tab and take a look at how EFO evolves over time. Active development of an ontology is a good indicator that this ontology is kept up to date. As the domain of biomedicine changes,
+The GWAS Catalog annotates it's traits to the [Experimental Factor Ontology (EFO)](www.ebi.ac.uk/efo) and that's what we will try to do to. 
+-[x] Try and find EFO in OLS. 
+-[x] Take a look at it's structure.
+-[x] Find the 'Ontology history' tab and take a look at how EFO evolves over time. Active development of an ontology is a good indicator that this ontology is kept up to date. As the domain of biomedicine changes,
 it is only natural that the ontologies representing that domain should reflect the changes.
 
-Now that we have decided which ontology we will use, let's try and actually annotate our data to that ontoloy!
+Now that we have decided which ontology we will use, let's go an meet Zooma!
 
 ## Part Five - Automatic data annotation through Zooma 
 
@@ -137,39 +139,87 @@ Go to the data file and open the traits.tsv file (you can use your favorite edit
  >: vi traits.tsv
 ```
 
-We have created a list of all of our study traits that need to be annotated to EFO. One option we have is to manually search for each term in OLS and keep the annotation that we want. 
-
-Another option that we have is to use Zooma to try and do this semi-automatically.
+We have created a list of all of our study traits that need to be annotated to EFO. In this case we only have 22 traits to map. 
+One option we have is to manually search for each term in OLS and keep the annotation that we want. But you usually will have a lot more data and need a process that is a bit more automated.
 
 Go to the Zooma web page: www.ebi.ac.uk/spot/zooma
 
 Copy the traits from the traits.tsv file into the text box and press the 'Annotate button'. Take a look at the results. 
 
-A lot of teams at the EBI annotate their data with ontology terms. Because they don't want to do this all the time, they create data sources to store the mappings between their text data and ontology term. So next time they want to annotate the same terms, they don't need to look them up again. That's what Zooma does. It has a bunch of curated data sources from various teams at the EBI. When a term is given to Zooma, Zooma will look to see if it has seen the term before and will return the
+A lot of teams at the EBI annotate their data with ontology terms. Because they don't want to do this all the time, they create data sources to store the mappings between their text data and ontology term. So next time they want to annotate the same terms, they don't need to look them up again. That's what Zooma does. It has a bunch of curated data sources from various teams at the EBI. When a text term is given to Zooma, Zooma will look to see if it has seen a suitable mapping for that term before before and will return the
 mapping with a level of confidence. If Zooma hasn't seen the term before in it's data sources, it will go to OLS and try to find a good mapping there.
 
 You can see the data sources that Zooma has, and customize your search as you want it. Click on 'Configure Datasources' and have a look around.
 
-Most of our results should have the GWAS Catalog in the 'Source' column, and should have a HIGH Mapping confidence. This is expected, as we are looking at studies with traits that have already been curated.
+Most of our results we got should have the GWAS Catalog in the 'Source' column, and should have a HIGH Mapping confidence. This is expected, as we are looking at studies with traits that have already been annotated.
 
 We will try and follow the curation steps for these studies to fit the GWAS Catalog standard. 
 
-## Part six - Zooma HIGH results
+## Part Six - Zooma HIGH confidence
 
-Select all the datasources except GWAS, and run the annotation again. The results should not be as good this time. That's OK, we will make them better!
+Select all the data sources, except GWAS, and run the annotation again. The results should not be as good this time. That's OK, we will make them better!
 
-First let's look at the results that have a HIGH confidence. If you trust the sources that you have selected, you can use the mappings that have a high confidence withought looking at them again. It is unlikely that there will be a mis-match here. 
+First let's look at the results that have a HIGH confidence. If you the sources that you have selected represent the domain of your data, you can use the mappings that have a high confidence withought looking at them again. 
+
+We will copy these mappings to our traits.tsv file. Open traits-1.tsv in excel. We have already copied the high mappings into this file. Select the traits that don't have a mapping and lets go run them through Zooma again.
+
+## Part Seven - Zooma GOOD confidence
+
+For the results that didn't get a high mapping, let's run the same query (selecting all data sources, except GWAS). We can see that we have some resutls from some other data sources, that don't match very well, and some ontology matches. Zooma went and looked up our terms in OLS. Filter out the data sources in total (select 'Don't search in any datasources' in the 'Configure datasources' drop down window) and hit 'Annotate' again. The results look a little better for some terms.
+
+We will focus on the mappings that have a good confidence and see if we like them and how we can improve them. We have done a bit of pre-processing to help you curate the good terms and ignore the medium mappings for now. 
+Open the traits-2.tsv file in excel and filter the GOOD results. Select them and paste them into the Zooma box. Run the annotation (remember, we have chosen to exclude all data sources and let Zooma fall back to searching OLS for now). 
+
+All the mappings should be of GOOD confidence. This means that Zooma found an exact label (or synonym) match for our terms in OLS. 
+
+We want to map our terms to EFO. Some already mapped to EFO and that's great! We still need to look at them though to make sure that we are satisfied with the mapping, or that we don't need to alter our search to include more terms. 
+
+For example `Age at smoking initiation in chronic obstructive pulmonary disease` mapped to `EFO_0000341` with label `chronic obstructive pulmonary disease`. We want to keep that mapping, but there is room for another one to be included. If we go to (OLS)[www.ebi.ac.uk/ols] and search for `smoking initiation` we get the EFO term `EFO_0005670`. So in this case we can have 2 mappings. 
+
+Do the same for the other terms mapped to EFO. 
 
 
+## Part Eight - Introducing OxO 
 
-## Part Four - Install BioSolr plugins
+But what about the ones that mapped to a different ontology? Well let's throw them into OxO and see what we get!
 
-Now we're going to try and improve our search results using the structure of the ontology.  To do this, we need to add the BioSolr ontology expansion plugin.
+Head over to (OxO)[www.ebi.ac.uk/spot/oxo]. OxO is a tool that helps you explore ontology-to-ontology cross references (or ontology-to-vocabulary cross references). So if the term `liver` exists in multiple ontologies, we can find all the common references to that term.
+
+Copy and paste all the 'Ontology Class ID's of the other-than-efo-mapped-terms into OxO and select 'Find mappings. We can explore the links from each ontlogy class to an EFO ontology class, if it exists. 
+
+Let's try clicking on NCIt:C2975 (Cystic Fibrosis). There is a link to EFO! If we select it and then click on 'View in OLS', we will be redirected to the term in OLS. We can see that the specific Xref leads to an obsolete efo class, but efo tells us what to use instead. 
+
+You can do the same for the rest of the OxO Xref mappings, if there are any. For the ones that don't match, we will leave them blank.
+
+## Part Nine - Restricting Zooma to an ontology
+
+Term by term, we have curated the GOOD confidence results. Open the trait-2-curated.tsv file to see the terms after they have been curated. 
+
+Again, let's select the un-mapped terms and go to Zooma. Open the trait-3.tsv file and select the ones with GOOD confidence. These are the ones that were left un-mapped after the last step. Copy them again into Zooma and customize the search.
+
+We will exclude all data sources from our search, but now we will also go to 'Configure Ontology Sources' and select only EFO!
+
+Almost all of our mappings are GOOD. We will go though the same process as in step seven and curate any terms that might need curation. 
+The result of the curation is in the traits-3-curated.tsv file. Almost done, only one term left!
+
+## Part Ten - Creating a new ontology class through Webulous
+
+We can see the one term is left without a mapping to an EFO class: `Pneumoconiosis in silica exposure`
+
+If we search for the term in OLS we will be able to find a suitable match for it. But let's pretend that there isn't one. This will sometimes happen with your data. Sometimes your data isn't represented yet in the ontology you want - or in any ontology! 
+
+We will see how to create a new class in an ontology using (Webulous)[www.ebi.ac.uk/efo/webilous]. 
+
+Webulous is a tool for guided ontology development. You can specify ontology design patterns in Webulous and populate them with data. There is a built in ontology searcher and validator. 
+
+## Part Eleven - Install BioSolr plugins
+
+We have our data all annotated. Now we're going to try and improve our search results using the structure of the ontology.  To do this, we need to add the BioSolr ontology expansion plugin.
 
 Before we start, let's shutdown our running Solr server
 
 ```
->: cd ~/Projects/BioSolr/tutorial/solr/
+>: cd ~/Projects/ICBO2017/solr/
 >: solr_stop.sh
 ```
 
@@ -180,12 +230,10 @@ Now, take the BioSolr plugin jar file out of the `plugins/` directory and copy i
 >: cp ../plugins/solr-ontology-update-processor-0.5.jar solr-conf/documents/lib/
 ```
 
-You can find the code of this plugin under the `BioSolr/ontology/ontology-annotator` directory.
-
 We've installed our plugin, but we need to do a bit of reconfiguration to make Solr use it.
 
 
-## Part Five - Configure BioSolr
+## Part Twelve - Configure BioSolr
 
 Now we need to modify our Solr configuration to make use of this plugin.
 
@@ -232,83 +280,80 @@ Still editing `solr-conf/documents/conf/solrconfig.xml`, scroll back up to line 
 
 Now we've reconfigured our server, we just have to restart...
 ```
->: cd ~/Projects/BioSolr/tutorial/solr/
+>: cd ~/Projects/ICBO2017/solr/
 >: solr-start.sh
 ```
 
-## Part Six - Reindex our data to take advantage of ontology enrichment
+## Part Thirteen - Reindex our data to take advantage of ontology enrichment
 
 This bit is simple - we can just rerun our indexing process from earlier...
 
 ```
->: curl http://localhost:8983/solr/documents/update --data-binary @../data/gwas-catalog-annotation-data.csv -H 'Content-type:application/csv'
+>: curl http://localhost:8983/solr/documents/update --data-binary @../data/gwas-catalog-data-lung.csv -H 'Content-type:application/csv'
 >: curl http://localhost:8983/solr/documents/update --data '<commit/>' -H 'Content-type:text/xml; charset=utf-8'
 ```
 
 You'll notice this takes a while longer than it did earlier - this is because this time, as we index our data we're calling out to OLS to expand our data using the ontology.  Hopefully network access is up to it!
 
-If you open the Solr admin interface again [http://localhost:8983/solr/#/documents](http://localhost:8983/solr/#/documents), we should still have 26,385 documents.  But if we do a query - http://localhost:8983/solr/#/documents/query - you should see a lot more information than we had earlier, including some new fields that weren't in our spreadsheet.
+If you open the Solr admin interface again [http://localhost:8983/solr/#/documents](http://localhost:8983/solr/#/documents), we should still have 99 documents.  But if we do a query - http://localhost:8983/solr/#/documents/query - you should see a lot more information than we had earlier, including some new fields that weren't in our spreadsheet.
 
-## Part Seven - Ontology-powered search!
+## Part Fourteen - Ontology-powered search!
 
 Now let's go back to our web application and see if we can take advantage of all this extra information.
 
 Restart the application again:
 ```
->: cd ~/Projects/BioSolr/tutorial/tools
+>: cd ~/Projects/ICBO2017/tools
 >: java -jar webapp-1.0-SNAPSHOT.jar server webapp.yml
 ```
-You'll straight away notice something new - lots of additional checkboxes (you might need to reload your page).  These are present because our webapp has noticed that we have additional ontology fields in our data.
+You'll straight away notice something new - some additional checkboxes (you might need to reload your page).  These are present because our webapp has noticed that we have additional ontology fields in our data.
 
-Now let's go back to our earlier searches.  If you remember, we tried looking for `lung cancer` and we got 31 results.  We should be able to do the same search again, and get the same results.
+Now let's go back to our earlier searches.  If you remember, we tried looking for `lung cancer` and we got 16 results.  We should be able to do the same search again, and get the same results.
 
 Then, we tried `lung disease` and only got 3 results.  Again, we should be able to verify this. But now let's check the box to use ontology expansion:
 - [x] Include parent labels
-Now if we rerun the search, we should see 53 results, across a whole variety of lung disease.  One of our hits, for example, should look like this:
+Now if we rerun the search, we should see 31 results, across a whole variety of lung disease.  One of our hits, for example, should look like this:
 
-> 1.    **Variants in FAM13A are associated with chronic obstructive pulmonary disease.**  
->       Cho MH - Nat Genet.  
->       *rs7671167* is associated with *Chronic obstructive pulmonary disease.*   
+> 14.    **A genome-wide association study in chronic obstructive pulmonary disease (COPD): identification of two major susceptibility loci.**  
+>       CPillai SG - PLoS Genet.  
+>       *rs1828591* is associated with *Chronic obstructive pulmonary disease.*   
 >       **Annotation** chronic obstructive pulmonary disease [http://www.ebi.ac.uk/efo/EFO_0000341].  
 >       **Children** chronic bronchitis.  
 >       **Parent(s)** lung disease.  
 >       **Has disease location** trachea lung.  
 
-This looks much more like it! But we can even go one better than this - let's try searching for `lung` again. Uncheck all the boxes so we get 49 results.
+This looks much more like it! But we can even go one better than this - let's try searching for `lung` again. Uncheck all the boxes so we get 25 results.
 This time, though, let's also include diseases which are located in the lung...
 - [x] "Has disease location"
-Now you should see that we have 75 results; we're using relationships in the ontology to improve our results.  For example, one of our results looks like this:
+Now you should see that we have 40 results; we're using relationships in the ontology to improve our results.  For example, one of our results looks like this:
 
-> 10.   **Genome-wide association study identifies BICD1 as a susceptibility gene for emphysema.**  
->       Kong X - Am J Respir Crit Care Med.  
->       *rs641525* is associated with *Emphysema-related traits.*  
->       **Annotation** emphysema [http://www.ebi.ac.uk/efo/EFO_0000464].  
->       **Parent(s)** lung disease.  
->       **Has disease location** lung.  
+> 26.   **A genome-wide association study identifies susceptibility loci of silica related pneumoconiosis in Han Chinese.
+**  
+>       Chu M - Hum Mol Genet.  
+>       *rs73329476* is associated with *Pneumoconiosis in silica exposure.*  
+>       **Annotation** pneumoconiosis [http://www.orpha.net/ORDO/Orphanet_182098].  
+>       **Parent(s)** lung disease bacterial disease 
+>       **Has disease location** lung
 
 If you look closely, you'll see that "lung" is not mentioned anywhere in our data, only the extra fields that have come from the ontology.  We'd actually have picked this result up by including parents (`lung disease`), but this is only because EFO nicely defines hierarchy.  If we were using a different ontology with a different hierarchy (maybe one which doesn't use hierarchy in the ways we'd like), we can use a relationship other than `is a` to find this result.
-
-Next, we tried searching for `schizophrenia`.  Let's try this again - yep, still 51 results.  You'll notice if we include parent terms, we still get 51 results - our order might shuffle around a bit though. 
-This isn't unexpected - most of our data about schizophrenia should be nicely mapped to a specific term and would include the text "schizophrenia" in the title or the annotation line.
-But last time we tried to search for other `mental disorder` and found no results at all.  Now, if we search including child and parent labels, we get more than 100 results! This covers a wide range of disorders, like "schizophrenia", "bipolar disorder" and many more.  For example:
-
-> 1.    **Cross-disorder genomewide analysis of schizophrenia, bipolar disorder, and depression.**  
->       Huang J - Am J Psychiatry  
->       *rs1001021* is associated with *Schizophrenia, bipolar disorder and depression (combined)*  
->       **Annotation** bipolar disorder [http://www.ebi.ac.uk/efo/EFO_0000289]  
->       **Parent(s)** mental or behavioural disorder  
 
 This shows the power of including additional information from the ontology in your Solr index. You'll also see the search is just as fast as it was previously: by including extra data when we built our index, we have almost no penalty in search time - which is usually the best option for users.
 
 #### Additional Tasks
 
-- [x] Play around with the index some more
-- [x] Can you redo the searches for anatomical features from earlier?  What happens if you search by `heart` or `liver` and include child terms?
-- [x] Try checking extra boxes to include additional relations.  Can you find more ways to search the data?
+- [x] Try searching for 'pulmonary' or 'pulmonary disease'. Given that pulmonary is a synonym for lung, would you want to have the option to see these reuslts under lung disease and vice versa?
+- [x] What happens when you search for 'Boeck sarcoid'?
+- [x] What happens when you search for 'respiratory system disease'?
+- [x] If you select the checkboxes to include synonym, parent, child labels, does anything change?
 
 ## Conclusions
 
-This is the end of the BioSolr ontology expansion tutorial. You've seen how to install Solr, load some example data, extend Solr with the ontology expansion plugin developed by BioSolr into a Solr installation, and you've seen some of the extra features this plugin can give you.
+This is the end of the SPOT Ontology Tooling tutorial. You've seen how to install Solr, load some example data, go through a set of steps and tools to annotate our data to the Experimental Factor Ontology, extend Solr with the ontology expansion plugin developed by BioSolr into a Solr installation, and you've seen some of the extra features this plugin can give you.
+
+You can find a similar tutorial exclusively for BioSolr, along with the code for the webapp and the plugin, here - https://github.com/EBISPOT/BioSolr
+
+
+*You can also do all of this using elasticsearch, not only Solr!*
 
 If you have any comments, questions or feedback on this demo, you can use the tracker for this repository here - https://github.com/flaxsearch/BioSolr/issues, or send an email to matt@flax.co.uk or tburdett@ebi.ac.uk.
 
