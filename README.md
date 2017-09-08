@@ -139,8 +139,9 @@ Go to the data file and open the traits.tsv file (you can use your favorite edit
  >: vi traits.tsv
 ```
 
-We have created a list of all of our study traits that need to be annotated to EFO. In this case we only have 22 traits to map. 
-One option we have is to manually search for each term in OLS and keep the annotation that we want. But you usually will have a lot more data and need a process that is a bit more automated.
+We have created a list of all the disease traits for our studies. The disease traits are what we will be annotating to EFO. In this case we only have 22 traits to annotate.
+
+One option we have is to manually search for each term in OLS, find the EFO ontology class that we find fit, and keep it as our annotation. But you usually will have a lot more data and need a process that is a bit more automated.
 
 Go to the Zooma web page: www.ebi.ac.uk/spot/zooma
 
