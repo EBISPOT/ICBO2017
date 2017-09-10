@@ -363,3 +363,87 @@ For more about the team of SPOT and our tools around ontologies, head here - htt
 
 
 
+## This is the quick version of the above tutorial, contains the basic command lines only
+
+### Pre-requisites
+
+#### Java 8 
+
+Linux
+
+```
+$ sudo apt install openjdk-8-jdk
+```
+
+Mac
+
+If you dont have it, install homebrew
+```
+$ /usr/bin/ruby –e “$(curl –fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”
+$ brew update
+$ brew cask install java
+```
+
+#### Solr
+
+* Download Solr from http://lucene.apache.org/solr
+* Unpack solr into your preferred directory
+* I am going to use ~/Applications/solr-6.1.1
+````
+ $ cd ~/Applications/solr-6.1.1
+ $ bin/solr start
+````
+* See if solr is running on http://localhost:8983
+````
+ $ bin/solr stop
+ $ git clone https://github.com/EBISPOT/ICBO2017.git
+````
+#### Start up solr with BioSolr configuration
+````
+ $ cd ICBO2017/solr
+ $ export SOLR_DIR=~/Application/solr-6.1.1
+ $ ./solr_start.sh
+````
+* See if solr is running on http://localhost:8983 and if you can see the ‘documents’ core
+
+### Loading data ignoring ontology annotations
+
+#### Load data ignoring ontology mapping (we should be in the ‘ICBO2017/solr’ folder)
+````
+ $ curl http://localhost:8983/solr/documents/update --data-binary @../data/gwas-catalog-data-lung.csv -H 'Content-type:application/csv'
+ $ curl http://localhost:8983/solr/documents/update --data '<commit/>' -H 'Content-type:text/xml; charset=utf-8'
+````
+* See that the data is loaded from: http://localhost:8983/solr/#/documents/query
+
+#### Run sample web app (we should be in the ICBO2017/data folder)
+````
+ $ cd ../tools
+ $ java -jar webapp-1.0-SNAPSHOT.jar server webapp.yml
+````
+* You can see the sample web app at http://localhost:8080 
+
+### Enable BioSolr and load data again
+
+#### Configure BioSolr to run with our solr instance (we should be in the ICBO2017/tools folder)
+
+* Kill the web app
+````
+ $ cd ../solr/solr-conf/documents/conf
+ $ mv solrconfig.xml _solrconfig.xml
+ $ mv biosolr_enabled_solrconfig.xml solrconfig.xml
+ $ cd ../../../
+ $ ./solr_stop.sh
+ $./solr_start.sh
+````
+#### Load the data again, this time solr will take into account the ontology annotations
+````
+ $ curl http://localhost:8983/solr/documents/update --data-binary @../data/gwas-catalog-data-lung.csv -H 'Content-type:application/csv'
+ $ curl http://localhost:8983/solr/documents/update --data '<commit/>' -H 'Content-type:text/xml; charset=utf-8'
+````
+#### Run the sample web app again and see the difference in the querying (we should be in the ICBO2017/solr folder)
+````
+$ cd ../tools
+$  java -jar webapp-1.0-SNAPSHOT.jar server webapp.yml
+````
+* You can see the sample web app at http://localhost:8080 
+
