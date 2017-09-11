@@ -24,11 +24,11 @@ In this tutorial you will learn how to:
 
 Download Solr from http://lucene.apache.org/solr/ (Pick .tgz or .zip file as you prefer)
 
-Unpack the Solr download into your preferred directory - for this demo, we're going to use `~/Applications/solr-5.3.1/`
+Unpack the Solr download into your preferred directory - for this demo, we're going to use `~/Applications/solr-6.6.1/`
     
 Once you've done this, verify you can startup Solr:
 ```
->: cd ~/Applications/solr-5.3.1/
+>: cd ~/Applications/solr-6.6.1/
 >: bin/solr start
 ```
 
@@ -49,7 +49,7 @@ Check out the code for this demo into your preferred directory - we're going to 
 We've supplied the required configuration to get us up and running quickly, so let's start a new Solr instance that uses this config:
 ```
 >: cd ~/Projects/ICBO2017/solr
->: export SOLR_DIR=~/Applications/solr-5.3.1
+>: export SOLR_DIR=~/Applications/solr-6.6.1
 >: solr-start.sh
 ```
 
@@ -78,7 +78,7 @@ Now let's index this data.  You can upload CSV files directly to Solr using curl
 
 The first command here uploads the data, the second one commits the changes and makes your newly indexed documents visible.
 
-Now, if you open the admin interface once more and look at the overview of the documents core [http://localhost:8983/solr/#/documents](http://localhost:8983/solr/#/documents), you should see we now have 99 documents in our index.
+Now, if you open the admin interface once more and look at the overview of the documents core [http://localhost:8983/solr/#/documents](http://localhost:8983/solr/#/documents), you should see we now have 102 documents in our index.
 
 We can also inspect some of the data by browsing to the query page [http://localhost:8983/solr/#/documents/query](http://localhost:8983/solr/#/documents/query) and running a standard query - you can see that the documents in our index correspond to rows in our spreadsheet.
 
@@ -105,7 +105,7 @@ Looks like we get 16 results, all containing lung cancer in the title or the ass
 >       Broderick P - Cancer Res.  
 >       *rs8034191* is associated with *Lung cancer*  
 
-But what if we want all lung diseases? We could try searching for `lung disease` - but this only gives us 2 results, probably not what we want.  We can try just searching for `lung`, which looks a little better - 25 results this time, some of them are lung cancer but there's also stuff about lung function, so this isn't ideal either.
+But what if we want all lung diseases? We could try searching for `lung disease` - but this only gives us 2 results, probably not what we want.  We can try just searching for `lung`, which looks a little better - 24 results this time, some of them are lung cancer but there's also stuff about lung function, so this isn't ideal either.
 
 
 #### Additional Tasks
@@ -167,11 +167,11 @@ Open `traits-1.tsv` in excel. We have already copied the high mappings into this
 
 For the results that didn't get a high mapping, let's run the same query (selecting all data sources, except GWAS). We can see that we have some resutls from some other data sources, that don't match very well, and some ontology matches. Zooma went and looked up our traits in OLS. Filter out the data sources in total (select 'Don't search in any datasources' in the 'Configure datasources' drop down window) and hit 'Annotate' again. The results look a little better for some traits.
 
-We will focus on the mappings that have a good confidence and see if we like them and how we can improve them. We have done a bit of pre-processing to help you curate the good terms and ignore the medium mappings for now. 
+We will focus on the mappings that have good or medium confidence and see if we like them and how we can improve them.
 
-Open the `traits-2.tsv` file in excel and filter the GOOD results. Select them and paste them into the Zooma box. Run the annotation (remember, we have chosen to exclude all data sources and let Zooma fall back to searching OLS for now). 
+At this point we should start copying the mappings into our spreadhseet and start curating them. We have done a bit of pre-processing to help you curate the terms. Open the `traits-2.tsv` file in excel and filter the out the HIGH results. We have copied the first result of each mapping here.
 
-All the mappings should be of GOOD confidence. This means that Zooma found an exact label (or synonym) match for our traits in OLS. 
+If the mapping is of GOOD confidence, this means that Zooma found an exact label (or synonym) match for our traits in OLS. If it is of MEDIUM confidence, either the text match between the trait and the EFO Class label are not quite so good, or there are more than one mappings found so Zooma will lower it's confidence on each mapping.
 
 We want to map our traits to EFO. Some already mapped to EFO and that's great! We still need to look at them though to make sure that we are satisfied with the mapping, or that we don't need to expand our search to include more ontology classes. 
 
@@ -188,15 +188,15 @@ Head over to OxO (www.ebi.ac.uk/spot/oxo). OxO is a tool that helps you explore 
 
 Copy and paste all the 'Ontology Class ID's of the other-than-efo-mapped-traits into OxO and select 'Find mappings. We can explore the links from each ontlogy class to an EFO ontology class, if it exists. 
 
-Let's try clicking on NCIt:C2975 (Cystic Fibrosis). There is a link to EFO! If we select it and then click on 'View in OLS', we will be redirected to the term in OLS. We can see that the specific Xref leads to an obsolete EFO class, but EFO tells us what to use instead. 
+Let's try clicking on DOID:3082 (interstitial lung disease). There is a link to EFO! If we select it and then click on 'View in OLS', we will be redirected to the term in OLS if we want to.
 
 You can do the same for the rest of the OxO Xref mappings, if there are any and keep adding, changing the data in our `traits-2.tsv` file. For the ones that don't match, we will leave them blank.
 
 ## Part Nine - Restricting Zooma to an ontology
 
-Term by term, we have curated the GOOD confidence results. Open the `trait-2-curated.tsv` file to see the terms after they have been curated. 
+Term by term, we have curated the GOOD confidence results. Open the `trait-3.tsv` file to see the terms after they have been curated. 
 
-Again, let's select the un-mapped terms and go to Zooma. Open the `trait-3.tsv` file and select the ones with GOOD confidence. These are the ones that were left un-mapped after the last step, and we have already run them again through Zooma and copied their mappings to the file. 
+Again, let's select the un-mapped terms and go to Zooma. From the `trait-3.tsv` file filter out the traits that don't have a mapping. These are the ones that were left un-mapped after the last step.
 
 Copy them into Zooma and customize the search.
 
@@ -204,7 +204,7 @@ We will exclude all data sources from our search, but now we will also go to 'Co
 
 Almost all of our mappings are GOOD. We will go though the same process as in step seven and curate any mappings in the `traits-3.tsv` file that might not look right.
 
-The result of the curation is in the `traits-3-curated.tsv` file. Almost done, only one term left!
+The result of the curation is in the `traits-4.tsv` file. Almost done, only one term left!
 
 ## Part Ten - Creating a new ontology class through Webulous
 
@@ -226,18 +226,6 @@ Before we start, let's shutdown our running Solr server
 >: cd ~/Projects/ICBO2017/solr/
 >: solr_stop.sh
 ```
-
-Now, take the BioSolr plugin jar file out of the `plugins/` directory and copy it into our Solr setup.
-
-```
->: mkdir solr-conf/documents/lib
->: cp ../plugins/solr-ontology-update-processor-0.5.jar solr-conf/documents/lib/
-```
-
-We've installed our plugin, but we need to do a bit of reconfiguration to make Solr use it.
-
-
-## Part Twelve - Configure BioSolr
 
 Now we need to modify our Solr configuration to make use of this plugin.
 
@@ -288,7 +276,7 @@ Now we've reconfigured our server, we just have to restart...
 >: solr-start.sh
 ```
 
-## Part Thirteen - Reindex our data to take advantage of ontology enrichment
+## Part Twelve - Reindex our data to take advantage of ontology enrichment
 
 This bit is simple - we can just rerun our indexing process from earlier...
 
@@ -301,7 +289,7 @@ You'll notice this takes a while longer than it did earlier - this is because th
 
 If you open the Solr admin interface again [http://localhost:8983/solr/#/documents](http://localhost:8983/solr/#/documents), we should still have 99 documents.  But if we do a query - http://localhost:8983/solr/#/documents/query - you should see a lot more information than we had earlier, including some new fields that weren't in our spreadsheet.
 
-## Part Fourteen - Ontology-powered search!
+## Part Thirteen - Ontology-powered search!
 
 Now let's go back to our web application and see if we can take advantage of all this extra information.
 
@@ -440,6 +428,7 @@ $ brew cask install java
  $ curl http://localhost:8983/solr/documents/update --data-binary @../data/gwas-catalog-data-lung.csv -H 'Content-type:application/csv'
  $ curl http://localhost:8983/solr/documents/update --data '<commit/>' -H 'Content-type:text/xml; charset=utf-8'
 ````
+* Do you see any difference when you query solr? : http://localhost:8983/solr/#/documents/query
 #### Run the sample web app again and see the difference in the querying (we should be in the ICBO2017/solr folder)
 ````
 $ cd ../tools
