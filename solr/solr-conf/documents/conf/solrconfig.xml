@@ -430,7 +430,7 @@
          on each Update Request
       -->
        <lst name="defaults">
-           <!--  
+           <!--
          <str name="update.chain">ontology</str>
          -->
        </lst>
