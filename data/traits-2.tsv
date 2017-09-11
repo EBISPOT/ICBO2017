@@ -1,21 +1,22 @@
-Age at smoking initiation in chronic obstructive pulmonary disease	http://www.ebi.ac.uk/efo/EFO_0000341	GOOD
-Airway responsiveness in chronic obstructive pulmonary disease	http://www.ebi.ac.uk/efo/EFO_0000341	GOOD
-Asthma or chronic obstructive pulmonary disease	http://www.ebi.ac.uk/efo/EFO_0000270	GOOD
-Body mass in chronic obstructive pulmonary disease	http://www.ebi.ac.uk/efo/EFO_0000341	GOOD
-Chronic obstructive pulmonary disease	 http://www.ebi.ac.uk/efo/EFO_0000341	 HIGH
-Crohn's disease and sarcoidosis (combined)	http://www.orpha.net/ORDO/Orphanet_797	GOOD
-Cystic fibrosis severity	http://purl.obolibrary.org/obo/NCIT_C2975	GOOD
-Gene methylation in lung tissue
-Idiopathic pulmonary fibrosis	 http://www.ebi.ac.uk/efo/EFO_0000768	 HIGH
-Interstitial lung disease
-Lung Cancer (DNA repair capacity)	http://purl.obolibrary.org/obo/NCIT_C127142	GOOD
-Lung adenocarcinoma	 http://www.ebi.ac.uk/efo/EFO_0000571	 HIGH
-Lung cancer	 http://www.ebi.ac.uk/efo/EFO_0001071	 HIGH
-Non-small cell lung cancer	 http://www.ebi.ac.uk/efo/EFO_0003060	 HIGH
-Pneumoconiosis in silica exposure
-Pulmonary emphysema	 http://www.ebi.ac.uk/efo/EFO_0000464	 HIGH
-Pulmonary function	http://purl.obolibrary.org/obo/OMIM_608852	GOOD
-Sarcoidosis
-Sepsis from pneumonia (survival)	http://purl.obolibrary.org/obo/IDO_0000636	GOOD
-Squamous cell carcinoma	 http://www.ebi.ac.uk/efo/EFO_0000707	 HIGH
-YKL-40 levels	http://www.ebi.ac.uk/efo/EFO_0004869	GOOD
+Age at smoking initiation in chronic obstructive pulmonary disease	 http://www.ebi.ac.uk/efo/EFO_0000341	 GOOD	 EFO_0000341
+Airway responsiveness in chronic obstructive pulmonary disease	 http://www.ebi.ac.uk/efo/EFO_0000341	 GOOD	 EFO_0000341
+Asthma or chronic obstructive pulmonary disease	 http://www.ebi.ac.uk/efo/EFO_0000270	 GOOD	 EFO_0000270
+Body mass in chronic obstructive pulmonary disease	 http://www.ebi.ac.uk/efo/EFO_0000341	 GOOD	 EFO_0000341
+Chronic obstructive pulmonary disease	  http://www.ebi.ac.uk/efo/EFO_0000341	  HIGH
+"Crohns disease and sarcoidosis (combined)"	 http://www.orpha.net/ORDO/Orphanet_797	 GOOD	 Orphanet_797
+Cystic fibrosis severity	 http://purl.obolibrary.org/obo/NCIT_C2975	 GOOD	 NCIT_C2975
+Gene methylation in lung tissue	http://purl.obolibrary.org/obo/NCIT_C33024	MEDIUM	NCIT_C33024
+Idiopathic pulmonary fibrosis	  http://www.ebi.ac.uk/efo/EFO_0000768	  HIGH
+Interstitial lung disease	http://purl.obolibrary.org/obo/DOID_3082	MEDIUM	DOID_3082
+Lung Cancer (DNA repair capacity)	 http://purl.obolibrary.org/obo/NCIT_C127142	 GOOD	 NCIT_C127142
+Lung adenocarcinoma	  http://www.ebi.ac.uk/efo/EFO_0000571	  HIGH
+Lung cancer	  http://www.ebi.ac.uk/efo/EFO_0001071	  HIGH
+Non-small cell lung cancer	  http://www.ebi.ac.uk/efo/EFO_0003060	  HIGH
+Pneumoconiosis in silica exposure	http://www.ebi.ac.uk/efo/EFO_0005853	MEDIUM	EFO_0005853
+Pulmonary Emphysema	http://purl.obolibrary.org/obo/NCIT_C3348	MEDIUM	NCIT_C3348
+Pulmonary function	 http://purl.obolibrary.org/obo/OMIM_608852	 GOOD	 OMIM_608852
+Sarcoidosis	http://purl.obolibrary.org/obo/NCIT_C34995	MEDIUM	NCIT_C34995
+Sepsis from pneumonia (survival)	 http://purl.obolibrary.org/obo/IDO_0000636	 GOOD	 IDO_0000636
+Squamous cell carcinoma	  http://www.ebi.ac.uk/efo/EFO_0000707	  HIGH
+YKL-40 levels	 http://www.ebi.ac.uk/efo/EFO_0004869	 GOOD	 EFO_0004869
+Chronic bronchitis	 http://purl.obolibrary.org/obo/NCIT_C26722	 GOOD	 NCIT_C26722

@@ -63,7 +63,8 @@ def main():
                         print "Could not query zooma for value:", value
                     if semantic_tags is not None:
                         for st in semantic_tags:
-                            mapped.write(value + "\t" + st + "\t" + confidence + "\n")
+                            stid = st.split("/")
+                            mapped.write(value + "\t" + st + "\t" + confidence + "\t" + stid[len(stid) - 1]  + "\n")
                     else:
                         mapped.write(value + "\n")
                 else:
@@ -116,9 +117,13 @@ def get_semantic_tags_for_high_confidence(value, ontologies, datasources, confid
     reply = response.json()
 
     for mapping in reply:
-
+        st = None
         if mapping['confidence'] == confidence:
-            return mapping['semanticTags']
+            if st is None:
+                st = mapping['semanticTags']
+            else:
+                st.append(mapping['semanticTags'])
+        return st
 
 
 if __name__ == '__main__':

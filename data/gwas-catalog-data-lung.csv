@@ -98,3 +98,6 @@ id,study_id,study,first_author,publication,title,snp,disease_trait,efo_uri
 26019,8188,25101718,Lee JH,Am J Respir Cell Mol Biol,IREB2 and GALC are Associated with Pulmonary Artery Enlargement in Chronic Obstructive Pulmonary Disease.,rs754388,Chronic obstructive pulmonary disease,http://www.ebi.ac.uk/efo/EFO_0000341
 26384,10058102,25713168,Leng S,J Natl Cancer Inst,"15q12 Variants, Sputum Gene Promoter Hypermethylation, and Lung Cancer Risk: A GWAS in Smokers.",rs7179575,Gene methylation in lung tissue,http://www.ebi.ac.uk/efo/EFO_0006959
 26385,10058102,25713168,Leng S,J Natl Cancer Inst,"15q12 Variants, Sputum Gene Promoter Hypermethylation, and Lung Cancer Risk: A GWAS in Smokers.",rs73371737,Gene methylation in lung tissue,http://www.ebi.ac.uk/efo/EFO_0006959
+17128,10058297,25241909,Lee JH,Respir Res,Genetic susceptibility for chronic bronchitis in chronic obstructive pulmonary disease.,rs2869966,Chronic bronchitis,http://www.ebi.ac.uk/efo/EFO_0006505
+17129,10058297,25241909,Lee JH,Respir Res,Genetic susceptibility for chronic bronchitis in chronic obstructive pulmonary disease.,rs138641402,Chronic bronchitis,http://www.ebi.ac.uk/efo/EFO_0006505
+17130,10058297,25241909,Lee JH,Respir Res,Genetic susceptibility for chronic bronchitis in chronic obstructive pulmonary disease.,rs8042238,Chronic bronchitis,http://www.ebi.ac.uk/efo/EFO_0006505
