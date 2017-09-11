@@ -409,6 +409,14 @@ $ brew cask install java
  $ java -jar webapp-1.0-SNAPSHOT.jar server webapp.yml
 ````
 * You can see the sample web app at http://localhost:8080 
+* Search for
+  * lung disease
+  * lung cancer
+  * lung
+  * pulmonary 
+  * pulmonary disease
+  * boeck sarcoid
+  * respiratory system disease
 
 ### Enable BioSolr and load data again
 
@@ -435,4 +443,11 @@ $ cd ../tools
 $  java -jar webapp-1.0-SNAPSHOT.jar server webapp.yml
 ````
 * You can see the sample web app at http://localhost:8080 
-
+* Search for
+  * lung disease
+  * lung cancer
+  * lung
+  * pulmonary 
+  * pulmonary disease
+  * boeck sarcoid
+  * respiratory system disease
