@@ -376,9 +376,9 @@ $ brew cask install java
 
 * Download Solr from http://lucene.apache.org/solr
 * Unpack solr into your preferred directory
-* I am going to use ~/Applications/solr-6.1.1
+* I am going to use ~/Applications/solr-6.6.1
 ````
- $ cd ~/Applications/solr-6.1.1
+ $ cd ~/Applications/solr-6.6.1
  $ bin/solr start
 ````
 * See if solr is running on http://localhost:8983
@@ -389,7 +389,7 @@ $ brew cask install java
 #### Start up solr with BioSolr configuration
 ````
  $ cd ICBO2017/solr
- $ export SOLR_DIR=~/Application/solr-6.1.1
+ $ export SOLR_DIR=~/Application/solr-6.6.1
  $ ./solr_start.sh
 ````
 * See if solr is running on http://localhost:8983 and if you can see the ‘documents’ core
