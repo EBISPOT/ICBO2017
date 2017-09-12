@@ -12,7 +12,7 @@ In this tutorial you will learn how to:
    * OLS - the Ontology Lookup Service: www.ebi.ac.uk/ols
    * OxO - the Ontology Xref Service: www.ebi.ac.uk/spot/oxo
    * Webulous - a tool for guided ontology development: www.ebi.ac.uk/efo/webulous
- * Install BioSolr - ontology expansion plugin for Solr, to exploit the annotated data
+ * Install BioSolr - ontology expansion plugin for Solr, to exploit the annotated data: http://www.ebi.ac.uk/spot/BioSolr/
  * Configure BioSolr
  * Perform ontology-powered searches
 
